@@ -1,10 +1,13 @@
-public class Example2
+namespace free_work_cs.Qiita.readonly_or_const
 {
-    public Example2()
+    public class Example2
     {
-        if (VersionDefinition.CurrentVersion >= VersionDefinition.AvailableVersion)
+        public Example2()
         {
-            Console.WriteLine($"This version is available!");
+            if (VersionDefinition.CurrentVersion >= VersionDefinition.AvailableVersion)
+            {
+                Console.WriteLine($"This version is available!");
+            }
         }
     }
 }

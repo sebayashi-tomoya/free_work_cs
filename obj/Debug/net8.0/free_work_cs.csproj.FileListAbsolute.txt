@@ -12,3 +12,4 @@
 /Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.pdb
 /Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.genruntimeconfig.cache
 /Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/ref/free_work_cs.dll
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.sourcelink.json
