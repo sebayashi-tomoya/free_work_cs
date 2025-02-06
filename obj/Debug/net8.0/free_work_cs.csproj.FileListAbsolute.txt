@@ -1,0 +1,14 @@
+/Users/sebayashi-tomoya/development/src/free_work_cs/bin/Debug/net8.0/free_work_cs
+/Users/sebayashi-tomoya/development/src/free_work_cs/bin/Debug/net8.0/free_work_cs.deps.json
+/Users/sebayashi-tomoya/development/src/free_work_cs/bin/Debug/net8.0/free_work_cs.runtimeconfig.json
+/Users/sebayashi-tomoya/development/src/free_work_cs/bin/Debug/net8.0/free_work_cs.dll
+/Users/sebayashi-tomoya/development/src/free_work_cs/bin/Debug/net8.0/free_work_cs.pdb
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.AssemblyInfoInputs.cache
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.AssemblyInfo.cs
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.csproj.CoreCompileInputs.cache
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.dll
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/refint/free_work_cs.dll
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.pdb
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/free_work_cs.genruntimeconfig.cache
+/Users/sebayashi-tomoya/development/src/free_work_cs/obj/Debug/net8.0/ref/free_work_cs.dll
