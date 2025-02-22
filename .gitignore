@@ -1,0 +1,16 @@
+# ビルド結果
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio固有のファイル
+.vs/
+*.user
+*.suo
+
+# コンパイルされたファイル
+*.dll
+*.exe
+*.pdb
+
+# ログファイル
+*.log
