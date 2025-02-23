@@ -1,4 +1,4 @@
-namespace free_work_cs.Qiita.readonly_or_const
+namespace free_work_cs.ReadonlyOrConst
 {
     public class Example2
     {

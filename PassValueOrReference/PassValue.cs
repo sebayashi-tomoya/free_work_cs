@@ -1,4 +1,4 @@
-namespace free_work_cs.Qiita.pass_value_or_reference
+namespace free_work_cs.PassValueOrReference
 {
     class PassValue
     {
@@ -6,12 +6,12 @@ namespace free_work_cs.Qiita.pass_value_or_reference
         {
             // ref (引数で渡した値も変更される)
             int before = 1;
-            this.UseRef(ref before);
+            UseRef(ref before);
             Console.WriteLine(before); // 出力：2
 
             // out (複数の返り値を受け取ることができる)
             before = 1;
-            if (this.UseOut(before, out int outNum))
+            if (UseOut(before, out int outNum))
             {
                 Console.WriteLine(outNum); // 出力：2
             }

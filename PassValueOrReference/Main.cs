@@ -1,10 +1,10 @@
-namespace free_work_cs.Qiita.readonly_or_const
+namespace free_work_cs.PassValueOrReference
 {
     public class Main
     {
         public Main()
         {
-            new Example2();
+            new PassValue();
         }
     }
 }

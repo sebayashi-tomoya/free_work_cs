@@ -1,3 +1,5 @@
+namespace free_work_cs.ReadonlyOrConst;
+
 class VersionDefinition
 {
     public static readonly double AvailableVersion = 1.5;
