@@ -5,7 +5,7 @@
 // using free_work_cs.Qiita.pass_value_or_reference;
 
 // リフレクション入門
-using free_work_cs.Qiita.reflection_beginner;
+using free_work_cs.ReflectionBeginner;
 
 class Program
 {
