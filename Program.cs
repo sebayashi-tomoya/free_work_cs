@@ -5,7 +5,10 @@
 // using free_work_cs.PassValueOrReference;
 
 // リフレクション入門
-using free_work_cs.ReflectionBeginner;
+// using free_work_cs.ReflectionBeginner;
+
+// 拡張メソッド
+using free_work_cs.ExtensionMethod;
 
 class Program
 {
