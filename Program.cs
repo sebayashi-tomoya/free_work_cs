@@ -8,7 +8,10 @@
 // using free_work_cs.ReflectionBeginner;
 
 // 拡張メソッド
-using free_work_cs.ExtensionMethod;
+// using free_work_cs.ExtensionMethod;
+
+// ジェネリック入門
+using free_work_cs.GenericBeginner;
 
 class Program
 {
