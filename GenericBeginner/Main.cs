@@ -13,13 +13,5 @@ public class Main
         // int intItem = (int)genericItem.GetValue();
         // stringに代入する場合はキャストも不要
         string stringItem = genericItem.GetValue();
-
-
     }
-
-    private void WriteLine<T>(T item)
-    {
-        Console.WriteLine(item);
-    }
-
 }
