@@ -11,7 +11,10 @@
 // using free_work_cs.ExtensionMethod;
 
 // ジェネリック入門
-using free_work_cs.GenericBeginner;
+// using free_work_cs.GenericBeginner;
+
+// おまえは今まで書いたswitch文の数をおぼえているのか?
+using free_work_cs.UseNewSwitch;
 
 class Program
 {
