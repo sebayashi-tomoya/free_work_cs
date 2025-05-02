@@ -14,7 +14,10 @@
 // using free_work_cs.GenericBeginner;
 
 // おまえは今まで書いたswitch文の数をおぼえているのか?
-using free_work_cs.UseNewSwitch;
+// using free_work_cs.UseNewSwitch;
+
+// 公式ドキュメントから例外処理のベストプラクティスを学ぼう
+using free_work_cs.ExceptionBestPractice;
 
 class Program
 {
