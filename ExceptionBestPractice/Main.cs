@@ -1,5 +1,5 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
+﻿using System;
+using System.Runtime.ExceptionServices;
 
 namespace free_work_cs.ExceptionBestPractice;
 
@@ -7,86 +7,46 @@ public class Main
 {
     public Main()
     {
-        Console.WriteLine("Ok");
+        new ExceptionSample();
     }
 
-    public void ExecuteSqlCommand(string connString, string command)
-    {
-        var connection = new SqlConnection(connString);
-        var executeCommand = new SqlCommand(command, connection);
+}
 
+public class ExceptionSample
+{
+    /// <summary> コンストラクタ </summary>
+    public ExceptionSample()
+    {
         try
         {
-            connection.Open();
-            executeCommand.ExecuteNonQuery();
+            this.ReThrowException();
         }
-        catch (SqlException e)
+        catch (Exception e)
         {
-            Console.WriteLine("SQL実行でエラーが起きています");
-            Console.WriteLine($"{e.ToString}");
+            // スタックトレースをコンソールへ出力
+            Console.WriteLine(e.StackTrace);
         }
     }
 
-    // 従来のusing実装
-    public void ExecuteSqlCommandUsing(string connString, string command)
+    private void ReThrowException()
     {
-        using (var connection = new SqlConnection(connString))
-        using (var executeCommand = new SqlCommand(command, connection))
-        {
-            try
-            {
-                connection.Open();
-                executeCommand.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine("SQL実行でエラーが起きています");
-                Console.WriteLine($"{e.ToString}");
-            }
-        }
-        // 例外発生に関わらずusingブロックの終了タイミングでDisposeが実行される
-    }
-
-    // .NET8.0以降で使用可能なusing宣言
-    public void ExecuteSqlCommandNewUsing(string connString, string command)
-    {
-        using var connection = new SqlConnection(connString);
-        using var executeCommand = new SqlCommand(command, connection);
+        ExceptionDispatchInfo? edi = null;
         try
         {
-            connection.Open();
-            executeCommand.ExecuteNonQuery();
+            this.ThrowException();
         }
-        catch (SqlException e)
+        catch (Exception e)
         {
-            Console.WriteLine("SQL実行でエラーが起きています");
-            Console.WriteLine($"{e.ToString}");
+            // Captureメソッドを使用して例外情報を保持する
+            edi = ExceptionDispatchInfo.Capture(e);
         }
-        // 例外の発生有無に関係なく変数のスコープが無効になったタイミングでDisposeが実行される
+
+        // 例外情報が格納されている場合にThrowメソッドで再スローする
+        if (edi is not null) edi.Throw();
     }
 
-    public void CheckConnection(string connString, string command)
+    private void ThrowException()
     {
-        using var connection = new SqlConnection(connString);
-        using var executeCommand = new SqlCommand(command, connection);
-
-        // bad
-        try
-        {
-            // すでに閉じられている場合はInvalidOperationExceptionが発生
-            connection.Close();
-        }
-        catch (InvalidOperationException e)
-        {
-            Console.WriteLine("SQL実行でエラーが起きています");
-            Console.WriteLine($"{e.ToString}");
-        }
-
-        // good
-        if (connection.State != ConnectionState.Closed)
-        {
-            // すでに閉じられていない場合のみ実行する
-            connection.Close();
-        }
+        throw new Exception("例外が発生しました");
     }
 }
