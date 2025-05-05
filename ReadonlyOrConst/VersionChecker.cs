@@ -1,8 +1,8 @@
-namespace free_work_cs.ReadonlyOrConst
+namespace ReadonlyOrConst
 {
-    public class Example2
+    public class VersionChecker
     {
-        public Example2()
+        public VersionChecker()
         {
             if (VersionDefinition.CurrentVersion >= VersionDefinition.AvailableVersion)
             {

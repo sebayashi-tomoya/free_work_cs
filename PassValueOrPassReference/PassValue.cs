@@ -1,4 +1,4 @@
-namespace free_work_cs.PassValueOrReference
+namespace PassValueOrPassReference
 {
     class PassValue
     {
