@@ -16,4 +16,4 @@
 *.log
 
 # VSCodeの設定ファイル
-*.vscode
+*.vscode/
