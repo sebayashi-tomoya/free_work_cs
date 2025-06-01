@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveCollection", "ReactiveCollection.csproj", "{059B66F2-8413-5A15-2D06-B904E71CEEE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{059B66F2-8413-5A15-2D06-B904E71CEEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{059B66F2-8413-5A15-2D06-B904E71CEEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{059B66F2-8413-5A15-2D06-B904E71CEEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{059B66F2-8413-5A15-2D06-B904E71CEEE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A59B29A1-61D0-4FFE-A5E5-2844AA059154}
+	EndGlobalSection
+EndGlobal
