@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using JsonSerializer.Signals;
+﻿using JsonSerializer.Signals;
 using Newtonsoft.Json;
 
 namespace JsonSerializer
@@ -9,16 +8,11 @@ namespace JsonSerializer
         public static void Main(string[] args)
         {
             // JSONへ変換するオブジェクトを生成
-            var signals = new[]
+            var signals = new List<ISignal>
             {
-                new { isActive = false, value = (ISignal)new RedSignal() },
-                new { isActive = true,  value = (ISignal)new GreenSignal() },
-                new { isActive = false, value = (ISignal)new YellowSignal() }
-            };
-            var jsonObject = new JsonObject
-            {
-                Signals = new SignalList(signals.ToLookup(x => x.isActive, x => x.value)),
-                UpdatedAt = DateTime.Now
+                new RedSignal(),
+                new GreenSignal(),
+                new YellowSignal()
             };
 
             // シリアライズ
@@ -28,16 +22,14 @@ namespace JsonSerializer
                 Formatting = Formatting.Indented, // インデントを揃える
             };
 
-            var json = JsonConvert.SerializeObject(jsonObject, settings);
+            var json = JsonConvert.SerializeObject(signals, settings);
             Console.WriteLine("=== シリアライズ結果 ==");
             Console.WriteLine(json);
 
             //　デシリアライズ
-            var deserialized = JsonConvert.DeserializeObject<JsonObject>(json, settings);
+            var deserialized = JsonConvert.DeserializeObject<List<ISignal>>(json, settings);
             Console.WriteLine("\n=== デシリアライズ結果 ===");
-            Console.WriteLine($"要素数: {deserialized?.Signals?.Count ?? 0}");
-            Console.WriteLine($"{nameof(JsonObject.ActiveSignalTypeName)}: {deserialized?.Signals.ActiveSignalType?.Name}");
-
+            Console.WriteLine($"要素数: {deserialized?.Count ?? 0}");
         }
     }
 }
