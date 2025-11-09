@@ -15,13 +15,13 @@ namespace JsonSerializer
                 new YellowSignal()
             };
 
-            // シリアライズ
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto, // 型情報を含める
+                Converters = new List<JsonConverter> { new SignalTypeConverter() },
                 Formatting = Formatting.Indented, // インデントを揃える
             };
 
+            // シリアライズ
             var json = JsonConvert.SerializeObject(signals, settings);
             Console.WriteLine("=== シリアライズ結果 ==");
             Console.WriteLine(json);

@@ -7,22 +7,27 @@ namespace JsonSerializer
 {
     public class SignalTypeConverter : JsonConverter<ISignal>
     {
-        // ISignalを実装しているクラス
-        private IReadOnlyCollection<Type> ConcreteTypes => Assembly.GetEntryAssembly()
-            .GetTypes()
-            .Where(t => typeof(ISignal).IsAssignableFrom(t) && t.IsClass && !t.IsAbstract)
-            .ToList();
+        // JSON変換時に型名を保持しておくプロパティ名
+        private static readonly string TYPE_PROPERTY = "type";
 
         private Dictionary<string, Type> AllowedTypes = new Dictionary<string, Type>();
 
         public SignalTypeConverter()
         {
-            foreach (var type in ConcreteTypes)
+            // ISignalを実装しているクラス一覧をリフレクションで取得
+            var concreteTypes = Assembly.GetEntryAssembly()
+                .GetTypes()
+                .Where(t => typeof(ISignal).IsAssignableFrom(t) && t.IsClass && !t.IsAbstract)
+                .ToList();
+
+            // Dictionary化
+            foreach (var type in concreteTypes)
             {
                 this.AllowedTypes.Add(type.Name, type);
             }
         }
 
+        // シリアライズ時
         public override void WriteJson(JsonWriter writer, ISignal? value, Newtonsoft.Json.JsonSerializer serializer)
         {
             if (value is null) return;
@@ -30,15 +35,14 @@ namespace JsonSerializer
             var obj = new JObject();
 
             var typeKey = AllowedTypes.FirstOrDefault(at => at.Value == value.GetType()).Key;
-            obj["type"] = typeKey;
+            obj[TYPE_PROPERTY] = typeKey; // JSONのtypeプロパティにキーを格納
 
-            // 重要: serializerを渡さずに新しいシリアライザーを作成
-            // または、このコンバーターを除外した設定で再シリアライズ
+            // serializerをそのまま渡すとSignalTypeConverterの循環参照になってしまう
+            // このコンバーターを除外した設定で再シリアライズ
             var tempSerializer = new Newtonsoft.Json.JsonSerializer
             {
                 ContractResolver = serializer.ContractResolver,
                 Formatting = serializer.Formatting,
-                // このコンバーターを除外
             };
 
             // プロパティをシリアライズ
@@ -51,6 +55,7 @@ namespace JsonSerializer
             obj.WriteTo(writer);
         }
 
+        // デシリアライズ時
         public override ISignal? ReadJson(JsonReader reader, Type objectType, ISignal? existingValue, bool hasExistingValue, Newtonsoft.Json.JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null)
@@ -59,17 +64,11 @@ namespace JsonSerializer
             }
 
             var obj = JObject.Load(reader);
-            var typeKey = obj["type"]?.ToString();
+            var typeKey = obj[TYPE_PROPERTY]?.ToString(); // シリアライズ時に指定した文字列を取得
+            var targetType = AllowedTypes[typeKey]; // C#で扱うTypeへ変換
+            obj.Remove(TYPE_PROPERTY); // 文字列で設定していたプロパティは削除
 
-            if (string.IsNullOrEmpty(typeKey) || !AllowedTypes.ContainsKey(typeKey))
-            {
-                throw new JsonSerializationException($"不明または許可されていない型: {typeKey}");
-            }
-
-            var targetType = AllowedTypes[typeKey];
-            obj.Remove("type");
-
-            // 同様に新しいシリアライザーを使用
+            // シリアライズと同様に新しいシリアライザーを使用
             var tempSerializer = new Newtonsoft.Json.JsonSerializer
             {
                 ContractResolver = serializer.ContractResolver
